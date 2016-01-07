@@ -46,8 +46,6 @@ public class TimeService extends Service {
     public static final String TIMER_BR = "com.ross.exchangeapp.timer";
     public static final String SYNC_NEW_EVENTS_BR = "com.ross.exchnageapp.new_events";
     Intent bi = new Intent(TIMER_BR);
-    private SyncEventCompleted mListener;
-    Intent newEventsIntent = new Intent(SYNC_NEW_EVENTS_BR);
 
     public void onCreate() {
         super.onCreate();
@@ -114,7 +112,9 @@ public class TimeService extends Service {
         ApplicationContextProvider.setApplicationContext(getApplicationContext());
         DatabaseManager.initializeInstance(new WHDatabaseHelper(getApplicationContext()));
 
-        EventsManager.sharedManager().countOngoingEvents();
+        if(EventsManager.sharedManager().countOngoingEvents(true)) {
+            updateUI(null);
+        }
         LocalBroadcastManager.getInstance(ApplicationContextProvider.getContext()).sendBroadcast(bi);
     }
 
@@ -172,7 +172,6 @@ public class TimeService extends Service {
     }
 
     public void updateUI(final String accountName) {
-        EventsManager.sharedManager().countOngoingEvents();
         try {
             if(fragmentsUiUpdater != null)
                fragmentsUiUpdater.updateUI();

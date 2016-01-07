@@ -147,13 +147,13 @@ public class EventsFragment extends android.support.v4.app.Fragment {
     private BroadcastReceiver br = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-                if(intent.getAction().equalsIgnoreCase(TimeService.SYNC_NEW_EVENTS_BR))
-                   updateEventsUI();
+                if(intent.getAction().equalsIgnoreCase(TimeService.SYNC_NEW_EVENTS_BR)) {
+                    updateEventsUI();
+                }
             }
     };
 
     public void updateEventsUI() {
-        EventsManager.sharedManager().countOngoingEvents();
         ArrayList<Event>result = EventsProxy.sharedProxy().getAllEvents(position);
                 eventList = (ArrayList<Event>)result;
                 if(adapter != null) {

@@ -23,51 +23,17 @@ public class SoundManager {
         if (context != null) {
             if (on) {
                 if(Settings.getVibration()) {
-                    audioManager.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER,
-                            AudioManager.VIBRATE_SETTING_ON);
+                    audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
                 }
                 else {
-                    audioManager.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER,
-                            AudioManager.VIBRATE_SETTING_OFF);
+                    audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
                 }
-                //turn ringer silent
-                audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-
-                //turn off sound, disable notifications
-                audioManager.setStreamMute(AudioManager.STREAM_SYSTEM, true);
-
-                //notifications
-                audioManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
-
-                //alarm
-                audioManager.setStreamMute(AudioManager.STREAM_ALARM, true);
-
-                //ringer
-                audioManager.setStreamMute(AudioManager.STREAM_RING, true);
-
-                //media
-                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true);
             }
             else {
-                audioManager.setVibrateSetting(AudioManager.VIBRATE_TYPE_RINGER,
-                        AudioManager.VIBRATE_SETTING_ON);
-                //turn ringer silent
+                int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_RING);
+
                 audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-
-                // turn on sound, enable notifications
-                audioManager.setStreamMute(AudioManager.STREAM_SYSTEM, false);
-
-                //notifications
-                audioManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, false);
-
-                //alarm
-                audioManager.setStreamMute(AudioManager.STREAM_ALARM, false);
-
-                //ringer
-                audioManager.setStreamMute(AudioManager.STREAM_RING, false);
-
-                //media
-                audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
+                audioManager.setStreamVolume(AudioManager.STREAM_RING, maxVolume, AudioManager.FLAG_SHOW_UI + AudioManager.FLAG_PLAY_SOUND);
             }
         }
     }

@@ -81,26 +81,11 @@ public class AddNewAccountActivity extends ActionBarActivity implements View.OnC
         Typeface robotoFaceLight = Typeface.createFromAsset(getAssets(),"fonts/robotolight.ttf");
         singInTextView.setTypeface(robotoFaceLight);
 
-
-        ImageButton exchangeButton = (ImageButton) findViewById(R.id.exchangeButton);
-        exchangeButton.setOnClickListener(this);
-
         ImageButton googleButtonButton = (ImageButton) findViewById(R.id.googleButton);
         googleButtonButton.setOnClickListener(this);
-
-        ImageButton office365Button = (ImageButton) findViewById(R.id.office365Button);
-        office365Button.setOnClickListener(this);
     }
 
     public void onClick(View view) {
-        if(view.getId() == R.id.exchangeButton || view.getId() == R.id.office365Button) {
-            GATracker.tracker().setScreenName("Login").sendEvent("UX", "Exchange button click", "");
-
-            isAddingExchange = true;
-            Intent exchangeLoginIntent = new Intent(AddNewAccountActivity.this, ExchangeLoginActivity.class);
-            exchangeLoginIntent.putExtra("AddingExtraAccount", isAddingExtraAcount);
-            AddNewAccountActivity.this.startActivity(exchangeLoginIntent);
-        }
         if(view.getId() == R.id.googleButton) {
             GATracker.tracker().setScreenName("Login").sendEvent("UX", "Google button click", "");
 

@@ -97,9 +97,6 @@ public class SettingsActivity extends ActionBarActivity {
          Switch timerSwitch = (Switch)findViewById(R.id.timerSwitch);
          timerSwitch.setTypeface(light);
 
-         Switch listSwitch = (Switch)findViewById(R.id.listSwitch);
-         listSwitch.setTypeface(light);
-
         final Settings settings = Settings.sharedSettings();
 
 
@@ -131,20 +128,16 @@ public class SettingsActivity extends ActionBarActivity {
             }
         });
 
-        listSwitch.setChecked(settings.getListMeetingsForDay());
-        listSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                settings.setListMeetingsForDay(isChecked);
-                GATracker.tracker().setScreenName("Settings").sendEvent("UX", "Show all meetings for the day changed " + isChecked, "");
-            }
-        });
-
         timerSwitch.setChecked(settings.getTimer());
         timerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 settings.setTimer(isChecked);
+
+                if(!isChecked) {
+                    EventsManager.sharedManager().cancelAllNotifications();
+                }
+
                 GATracker.tracker().setScreenName("Settings").sendEvent("UX", "Timer during meeting changed " + isChecked, "");
             }
         });

@@ -31,7 +31,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class EventsManager {
 
-    private ArrayList<String> displayedNotificationIDs = new ArrayList<String>();
     public static final String KILL_SERVICE = "com.ross.exchangeapp.kill_service";
     public static final String START_SERVICE = "com.ross.exchangeapp.start_service";
     public static final String FORCE_SYNC_EVENTS = "com.ross.exchange.force_sync";
@@ -46,7 +45,7 @@ public class EventsManager {
     private String selectedEventId;
     private ArrayList<Event> ongoingEvents = new ArrayList<Event>();
     private int volume;
-    private Boolean muted = true;
+    private Boolean muted = false;
     private ArrayList<Event> cachedEvents;
 
     public static synchronized EventsManager sharedManager() {
@@ -102,30 +101,43 @@ public class EventsManager {
         return filteredEvents;
     }
 
-    public void countOngoingEvents() {
+    public boolean countOngoingEvents(Boolean shouldNotifyOnStatusBar) {
         ArrayList<Event> events = EventsProxy.sharedProxy().getAllEvents(1, 2);
 
         Date now = new Date();
-        ongoingEvents = new ArrayList<Event>();
-        for (Event event : events) {
-            Date startDate = event.getStartDateInDate();
-            Date endDate = event.getEndDateInDate();
-            if (isWithinRange(now, startDate, endDate)) {
-                event.checkIfAllDayEvent();
-                if(!event.getAllDay())
-                    ongoingEvents.add(event);
+        synchronized(ongoingEvents) {
+            int numberOfOngoingEvents = ongoingEvents.size();
+            ongoingEvents = new ArrayList<Event>();
+            for (Event event : events) {
+                Date startDate = event.getStartDateInDate();
+                Date endDate = event.getEndDateInDate();
+                if (isWithinRange(now, startDate, endDate)) {
+                    event.checkIfAllDayEvent();
+                    if(!event.getAllDay())
+                        ongoingEvents.add(event);
+                }
             }
-        }
-        notifyStatus(ongoingEvents);
 
-        Boolean needsMute = false;
-        for(Event event : ongoingEvents) {
-            if(event.getMute()) {
-                needsMute = true;
+            if(shouldNotifyOnStatusBar) {
+                Boolean timerOn = Settings.sharedSettings().getTimer();
+
+                if(timerOn)
+                    notifyStatus(ongoingEvents);
+
+                Boolean needsMute = false;
+                for(Event event : ongoingEvents) {
+                    if(event.getMute()) {
+                        needsMute = true;
+                    }
+                }
+
+                checkMuteState(needsMute);
             }
-        }
 
-        checkMuteState(needsMute);
+
+            // if any event becomes ongoing(in progress) or finishes, then we need update the UI
+            return numberOfOngoingEvents != ongoingEvents.size();
+        }
     }
 
     private void checkMuteState(Boolean mute) {
@@ -143,25 +155,14 @@ public class EventsManager {
         }
     }
 
+    public void cancelAllNotifications() {
+        NotificationManager notificationManager = (NotificationManager)ApplicationContextProvider.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
+    }
+
     public void notifyStatus(ArrayList<Event> events) {
         NotificationManager notificationManager = (NotificationManager)ApplicationContextProvider.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-
-        //Remove ongoing meetings which passed already
-        if(displayedNotificationIDs.size() > events.size()) {
-            ArrayList<String> notificationsToCancel = new  ArrayList<String>();
-            for(String id : displayedNotificationIDs) {
-                Boolean matches = false;
-                for (Event event : events) {
-                    if(event.getId().equals(id))
-                        matches = true;
-                }
-                if(!matches)
-                    notificationsToCancel.add(id);
-            }
-            for(String id : notificationsToCancel) {
-                notificationManager.cancel(id.hashCode());
-            }
-        }
+        notificationManager.cancelAll();
         for(Event event : events) {
             int notificationId = Math.abs(event.getId().hashCode());
             index++;
@@ -185,9 +186,7 @@ public class EventsManager {
                     .setContentText(minutesElapsed + " " + ApplicationContextProvider.getContext().getResources().getString(R.string.of) + " " + duration)
                     .build();
             //notification.flags |= Notification.FLAG_ONGOING_EVENT;
-            notificationManager.notify(notificationId , notification);
-            displayedNotificationIDs.clear();
-            displayedNotificationIDs.add(event.getId());
+            notificationManager.notify(notificationId, notification);
         }
     }
 
@@ -195,7 +194,6 @@ public class EventsManager {
         long diffInMillies = date2.getTime() - date1.getTime();
         return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
     }
-
 
     public String getSelectedEventId() {
         return selectedEventId;
@@ -206,7 +204,9 @@ public class EventsManager {
     }
 
     public ArrayList<Event> ongoingEvents() {
-        return ongoingEvents;
+        synchronized (ongoingEvents) {
+            return ongoingEvents;
+        }
     }
 
     boolean isWithinRange(Date testDate, Date startDate, Date endDate) {

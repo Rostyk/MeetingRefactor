@@ -83,6 +83,7 @@ public class EventsListAdapter extends BaseAdapter{
             holder = (ViewHolder)convertView.getTag();
         }
 
+        EventsManager.sharedManager().countOngoingEvents(false);
         ArrayList<Event> ongoinEvents = EventsManager.sharedManager().ongoingEvents();
 
         Typeface light = Typefaces.get(context, "robotolight");
@@ -111,18 +112,13 @@ public class EventsListAdapter extends BaseAdapter{
         }
 
         convertView.setBackgroundResource(drawableResourceId);
-
-
-        //int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 86, activity.getResources().getDisplayMetrics());
-        //convertView.setLayoutParams(new AbsListView.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, height));
-        //convertView.requestLayout();
-
         holder.ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Boolean mute = e.getMute();
                 e.setMute(!mute);
                 EventsProxy.sharedProxy().updateEvent(e);
+                EventsManager.sharedManager().countOngoingEvents(true);
 
                 setButtonImage(holder.ib, e);
             }

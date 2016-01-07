@@ -37,22 +37,6 @@
                  android:layout_gravity="center_horizontal"
                  android:layout_marginTop="14dp"
                  android:background="@drawable/googlebutton" />
-
-            <ImageButton
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:id="@+id/exchangeButton"
-                 android:background="@drawable/exchangebutton"
-                 android:layout_gravity="center_horizontal"
-                 android:layout_marginTop="20dp" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/office365Button"
-                android:background="@drawable/office365button"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp" />
          </LinearLayout>
 
 </LinearLayout>

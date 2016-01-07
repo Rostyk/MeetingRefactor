@@ -119,17 +119,6 @@
         android:text="@string/timer_during_meeting"
         android:paddingLeft="15dp"/>
 
-        <Switch
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:id="@+id/listSwitch"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/setting_item_bg"
-            android:textSize="@dimen/settings_option"
-            android:text="@string/list_of_meetings_for_day"
-            android:paddingLeft="15dp"/>
-
 
         <TextView
             android:layout_width="match_parent"
