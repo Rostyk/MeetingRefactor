@@ -44,6 +44,9 @@ public class AddNewAccountActivity extends ActionBarActivity implements View.OnC
     private ProgressDialog progress = null;
     private GoogleWebService service = null;
     static final int GOOGLE_CHOOSE_ACCOUNT_ACTIVITY = 1;
+    public static final int ADD_EXTRA_ACCOUNT = 12;
+    public static final int EXTRA_ACCOUNT_OK = 1;
+    public static final int EXTRA_ACCOUNT_ERROR = 0;
     private GoogleAccountCredential credential;
     private final int exGetEventsOperation = 11;
     String accountName;
@@ -139,6 +142,7 @@ public class AddNewAccountActivity extends ActionBarActivity implements View.OnC
 
     public void getEvents() {
         progress = new ProgressDialog(this);
+        progress.setCancelable(false);
         progress.setTitle(getString(R.string.google_calendar));
         progress.setMessage(getString(R.string.syncing_events));
         progress.show();
@@ -154,6 +158,7 @@ public class AddNewAccountActivity extends ActionBarActivity implements View.OnC
                             saveEvents((ArrayList<Event>) result);
                             saveAccount(service);
                             updateFragmentsUI();
+                            setResult(EXTRA_ACCOUNT_OK);
                             finish();
                         }
                         else {
@@ -167,6 +172,7 @@ public class AddNewAccountActivity extends ActionBarActivity implements View.OnC
                     else if(result == null) {
                         if(isAddingExtraAcount) {
                             removeAccount(service);
+                            setResult(EXTRA_ACCOUNT_ERROR);
                             finish();
                         }
                         if(progress != null)

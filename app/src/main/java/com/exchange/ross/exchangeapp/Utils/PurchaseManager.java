@@ -40,7 +40,7 @@ public class PurchaseManager {
         getPreferences();
 
         String base64EncodedPublicKey =
-                "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp6Y6lfvOv7vIXtBmz3ZqGCM6QffjWD5giQxWAGAYI9Dp1mzKgb2chE8sP7exzVfJXHnfvELDv9TtX9Y3qpOx0Ekg5cWGjCZ/MChY8Oy5Hq9fyAvh5ohzPIOQjlcLJuJeAWRDeenjMnQsQkkCIvfkuyeokwTr3w+qKvexqUcERBedfrEzV5My6YOajMXa3ypZnxC7LkO2QpgH0I72gdmaZAZ2wQLDGzZw3k7XpJy8rOiEqLbsAuVje/Tvtq/xuStgNEEbY21QKby7OlZ9PccAuAAgvLixL9tOihdz+awDxiMeHeZBkmCJt9AL7Y6voyH83I+3jZvjJWAjzLdq+G9kgwIDAQAB";
+                "720819835318-u45u3nfaalbd0mnb2m6du7fd7eutpkv3.apps.googleusercontent.com";
 
         mHelper = new IabHelper(context, base64EncodedPublicKey);
 
@@ -73,16 +73,8 @@ public class PurchaseManager {
             if(res == 7) {
                 alreadyOwned = true;
 
-                if(purchase != null)
-                    mHelper.consumeAsync(purchase, mConsumeFinishListener);
-
                 alreadyOwned = true;
                 purchased.onPurchaseComplete(true);
-            }
-
-            if (result.isFailure()) {
-               GATracker.tracker().setScreenName("Settings").sendEvent("Purchase", "Failure. " + result.getMessage(), "");
-               return;
             }
 
             alreadyOwned = true;

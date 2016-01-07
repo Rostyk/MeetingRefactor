@@ -31,6 +31,7 @@ import com.exchange.ross.exchangeapp.db.AccountsProxy;
 import java.util.ArrayList;
 
 public class SettingsActivity extends ActionBarActivity {
+    ScrollView scrollView;
     private ArrayList<RelativeLayout> accountViews = new ArrayList<RelativeLayout>();
     private Activity activity;
     @Override
@@ -165,7 +166,7 @@ public class SettingsActivity extends ActionBarActivity {
     public void setupLinkedAccountsSection() {
         Context context = getApplicationContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        ScrollView scrollView = (ScrollView)findViewById(R.id.settingsScrollView);
+        scrollView = (ScrollView)findViewById(R.id.settingsScrollView);
 
         LinearLayout containingLayout = (LinearLayout)scrollView.findViewById(R.id.containingView);
         LinearLayout settingsLinkedAccountsView = (LinearLayout)containingLayout.findViewById(R.id.settingsLinkedAccountsView);
@@ -217,15 +218,39 @@ public class SettingsActivity extends ActionBarActivity {
 
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                startActivityForResult(intent, AddNewAccountActivity.ADD_EXTRA_ACCOUNT);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == AddNewAccountActivity.ADD_EXTRA_ACCOUNT) {
+            if(resultCode == AddNewAccountActivity.EXTRA_ACCOUNT_OK) {
+                scrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
+            }
+        }
+        else  {
+            if (!PurchaseManager.sharedManager().mHelper.handleActivityResult(requestCode, resultCode, data)) {
+                // not handled, so handle it ourselves (here's where you'd
+                // perform any handling of activity results not related to in-app
+                // billing...
+                super.onActivityResult(requestCode, resultCode, data);
+            }
+            else {
+            }
+        }
     }
 
     public void addNewAccount() {
         Intent addNewAccountIntent = new Intent(SettingsActivity.this, AddNewAccountActivity.class);
         addNewAccountIntent.putExtra("AddingExtraAccount", true);
-        startActivity(addNewAccountIntent);
+        startActivityForResult(addNewAccountIntent, AddNewAccountActivity.ADD_EXTRA_ACCOUNT);
     }
 
 }

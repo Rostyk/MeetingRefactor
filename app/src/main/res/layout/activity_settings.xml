@@ -119,7 +119,6 @@
         android:text="@string/timer_during_meeting"
         android:paddingLeft="15dp"/>
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,7 +131,6 @@
             android:layout_width="wrap_content"
             android:layout_height="37dp"
             android:background="@drawable/setting_item_bg">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

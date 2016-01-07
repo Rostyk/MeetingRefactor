@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        config {
+        release {
             keyAlias 'maliwan'
             keyPassword 'rostyk199100'
             storePassword 'rostyk199100'
-            storeFile file('/Users/ross/myKey.jks')
+            storeFile file('/Users/rstepanyak/Work/jks/myKey.jks')
         }
     }
     compileSdkVersion 21
@@ -17,14 +17,14 @@ android {
         targetSdkVersion 21
         versionCode 2
         versionName "1.1"
-        signingConfig signingConfigs.config
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
         }
     }
     packagingOptions {
@@ -42,8 +42,6 @@ android {
     productFlavors {
     }
 }
-
-
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
