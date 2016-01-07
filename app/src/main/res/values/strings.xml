@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Meetings</string>
+    <!-- Screen titles -->
+    <string name="title_activity_add_new_account">Link new account</string>
+    <string name="title_activity_events">Events</string>
+    <string name="title_activity_event_details">Details</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Add new account screen -->
+    <string name="account_already_linked">This account is already linked</string>
+    <string name="google_calendar">Google calendar</string>
+    <string name="syncing_events">Syncing data</string>
+    <string name="cant_link_this_account">Service is not available. Please check your network connection and try again.</string>
+    <string name="sign_in">Sign in</string>
+    <!-- Main (events screen) -->
+    <string name="events_will_be_synced_soon">The data will be updated within a minute</string>
+
+    <!-- Settings screen -->
+    <string name="sound">Sound</string>
+    <string name="vibro">Vibration</string>
+    <string name="meeting">Meeting</string>
+    <string name="ignore_all_day_events">Ignore all day events</string>
+    <string name="mute_on_busy_meetings">Mute during busy meetings</string>
+    <string name="notification">Notification</string>
+    <string name="timer_during_meeting">Timer during meeting</string>
+    <string name="list_of_meetings_for_day">List the meetings in the morning</string>
+    <string name="manage_accounts">Manage accounts</string>
+    <string name="link_new_account">Link new account</string>
+    <string name="unlink_machine">Log out</string>
+    <string name="accounts">Accounts</string>
+
+    <!-- Notifications-->
+    <string name="of">of</string>
+
+</resources>

@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.exchange.ross.exchangeapp.activity.AddNewAccountActivity"
+    android:background="@color/bg_color"
+    android:orientation="vertical"
+    android:weightSum="1.0">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8">
+
+            <TextView
+                android:id="@+id/singInTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/list_item_title_color"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/sign_in"
+                android:textSize="28dp" />
+
+            <ImageButton
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/googleButton"
+                 android:layout_gravity="center_horizontal"
+                 android:layout_marginTop="14dp"
+                 android:background="@drawable/googlebutton" />
+
+            <ImageButton
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/exchangeButton"
+                 android:background="@drawable/exchangebutton"
+                 android:layout_gravity="center_horizontal"
+                 android:layout_marginTop="20dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/office365Button"
+                android:background="@drawable/office365button"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp" />
+         </LinearLayout>
+
+</LinearLayout>

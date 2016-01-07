@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.exchange.ross.exchangeapp.activity.EventsActivity"
+    android:background="@color/bg_color">
+
+        <LinearLayout
+            android:id="@+id/topView"
+            android:layout_marginTop="-3dp"
+            android:layout_marginLeft="-2dp"
+            android:layout_marginRight="-2dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:minHeight="140dp"
+            android:orientation="vertical"
+            android:background="@drawable/topbg">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                     <ImageButton
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="1dp"
+                         android:layout_marginLeft="1dp"
+                         android:layout_alignParentRight="true"
+                         android:layout_marginRight="10dp"
+                         android:id="@+id/settingsButton"
+                         android:padding="18dp"
+                         android:src="@drawable/settings_button"
+                         android:background="#0000"/>
+                <TextView
+                    android:id="@+id/topDateTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white_color"
+                    android:layout_marginTop="0dp"
+                    android:fontFamily="sans-serif-thin"
+                    android:paddingRight="58dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="76dp"
+                    android:text="16"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/topMonthTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_color"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="-14dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Apr 2015"
+                    android:textSize="24dp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/topDayOfWeekTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white_color"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif-thin"
+                        android:text="THURSDAY"
+                        android:textSize="21dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_alignParentBottom="true"/>
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="12dp"
+                        android:id="@+id/syncButton"
+                        android:background="@drawable/refresh"/>
+                    </RelativeLayout>
+            </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:id="@+id/pager"
+            android:layout_below="@+id/topView"/>
+
+</RelativeLayout>

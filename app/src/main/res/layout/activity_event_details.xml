@@ -1,0 +1,186 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_color"
+    android:orientation="vertical"
+    android:id="@+id/detailsMainLayout">
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/topView"
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="-2dp"
+        android:layout_marginRight="-2dp"
+        android:layout_marginTop="-2dp"
+        android:layout_height="178dp">
+
+    <LinearLayout
+        android:id="@+id/descriptionTopView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="-2dp"
+        android:layout_marginRight="-2dp"
+        android:layout_marginTop="-2dp"
+        android:background="@drawable/descriptiontop1"
+        android:orientation="vertical"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        //Meeting subject
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="55dp"
+            android:layout_marginLeft="24dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <ImageView
+                android:id="@+id/meetingSubjectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/subject"/>
+
+            <TextView
+                android:id="@+id/meetingSubjectTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white_color"
+                android:textSize="@dimen/details_subject"
+                android:maxLines="2"
+                android:text="My Meeting"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
+        <ImageButton
+            android:id="@+id/descriptionMuteButton"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="114dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/description_button1_on"/>
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        //Meeting time
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp">
+            <ImageView
+                android:id="@+id/meetingTimeImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/time"/>
+            <TextView
+                android:id="@+id/meetingTimeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/meetingSubjectTextView"
+                android:textSize="@dimen/details_time"
+                android:text="18:00 - 20:00"
+                android:layout_marginLeft="20dp"/>
+
+        </LinearLayout>
+
+        //Meeting location
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp">
+            <ImageView
+                android:id="@+id/meetingLocationImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/location"/>
+
+            <TextView
+                android:id="@+id/meetingLocationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/year"
+                android:textSize="@dimen/details_location"
+                android:text="Berlin"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+
+        //Meeting attendees
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp">
+            <ImageView
+                android:id="@+id/meetingAttendeesImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/attendees"/>
+
+            <TextView
+                android:id="@+id/meetingAttendeesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/year"
+                android:textSize="@dimen/details_attendees"
+                android:text="Lesyk"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+
+        //Meeting сalendar
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp">
+            <ImageView
+                android:id="@+id/meetingCalendarImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/calendar"/>
+
+            <TextView
+                android:id="@+id/meetingCalendarTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/year"
+                android:textSize="@dimen/details_calendar"
+                android:text="Main"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+
+        //Meeting description
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp">
+            <ImageView
+                android:id="@+id/meetingDescriptionImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/description"/>
+
+            <TextView
+                android:id="@+id/meetingDescriptionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/year"
+                android:textSize="@dimen/details_description"
+                android:text="Some description"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+        </LinearLayout>
+        </ScrollView>
+</LinearLayout>

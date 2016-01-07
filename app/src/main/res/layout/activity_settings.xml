@@ -1,0 +1,212 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_color"
+    tools:context="com.exchange.ross.exchangeapp.activity.SettingsActivity">
+    <ScrollView
+        android:id="@+id/settingsScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-2dp"
+        android:layout_marginLeft="-2dp">
+    <LinearLayout
+        android:id="@+id/containingView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/setting_top">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/settings_back_button"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="6dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/settingsBackButton"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_settings"
+            android:textSize="28sp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginBottom="4dp"
+            android:layout_gravity="bottom"
+            android:textColor="@color/white_color"
+            android:id="@+id/settingsTopTextView"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/settingSoundTextView"
+        android:layout_marginTop="12dp"
+        android:textSize="@dimen/settings_caption"
+        android:text="@string/sound" />
+
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:id="@+id/vibrationSwitch"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/setting_item_bg"
+        android:textSize="@dimen/settings_option"
+        android:switchPadding="39sp"
+        android:text="@string/vibro"
+        android:paddingLeft="15dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/settingMeetingTextView"
+            android:text="@string/meeting"
+            android:textSize="@dimen/settings_caption"
+            android:layout_marginTop="22dp"/>
+
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:id="@+id/statusBusySwitch"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/setting_item_bg"
+        android:textSize="@dimen/settings_option"
+        android:text="@string/mute_on_busy_meetings"
+        android:paddingLeft="15dp"/>
+
+        <Switch
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:id="@+id/ignoreAllDaySwitch"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/setting_item_bg"
+        android:textSize="@dimen/settings_option"
+        android:switchPadding="8dp"
+        android:text="@string/ignore_all_day_events"
+        android:paddingLeft="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/notification"
+            android:textSize="@dimen/settings_caption"
+            android:id="@+id/settingNotificationTextView"
+            android:layout_marginTop="22dp"/>
+
+
+        <Switch
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:id="@+id/timerSwitch"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:textSize="@dimen/settings_option"
+        android:switchPadding="8dp"
+        android:background="@drawable/setting_item_bg"
+        android:text="@string/timer_during_meeting"
+        android:paddingLeft="15dp"/>
+
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:id="@+id/listSwitch"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/setting_item_bg"
+            android:textSize="@dimen/settings_option"
+            android:text="@string/list_of_meetings_for_day"
+            android:paddingLeft="15dp"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/manage_accounts"
+            android:textSize="@dimen/settings_caption"
+            android:id="@+id/settingManageAccountsTextView"
+            android:layout_marginTop="22dp"/>
+        <RelativeLayout
+            android:id="@+id/settingsAddAccountView"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:background="@drawable/setting_item_bg">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_color"
+                android:text="@string/link_new_account"
+                android:textSize="@dimen/settings_option"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/settingAddNewAccountTextView"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:id="@+id/settingsAddAccountButton"
+                android:background="@drawable/settings_add"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/settingsRemoveAllAccountsView"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:background="@drawable/setting_item_bg">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_color"
+                android:text="@string/unlink_machine"
+                android:textSize="@dimen/settings_option"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/settingRemoveAllAccountsTextView"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:id="@+id/settingsRemoveAllAccountsButton"
+                android:background="@drawable/settings_remove"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/settingsLinkedAccountsView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accounts"
+            android:textSize="@dimen/settings_caption"
+            android:id="@+id/settingAccountsTextView"
+            android:layout_marginTop="22dp"/>
+        </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+
+</LinearLayout>
+
+
+

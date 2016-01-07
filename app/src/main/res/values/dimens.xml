@@ -1,0 +1,19 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="title">17dp</dimen>
+    <dimen name="rating">15dip</dimen>
+    <dimen name="genre">13dip</dimen>
+    <dimen name="year">12dip</dimen>
+    <dimen name="details_subject">25dip</dimen>
+    <dimen name="details_time">23dip</dimen>
+    <dimen name="details_location">23dip</dimen>
+    <dimen name="details_attendees">23dip</dimen>
+    <dimen name="details_calendar">23dip</dimen>
+    <dimen name="details_description">23dip</dimen>
+
+    <dimen name="settings_caption">20dip</dimen>
+    <dimen name="settings_option">16dip</dimen>
+</resources>

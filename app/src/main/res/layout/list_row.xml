@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/meeting1"
+    android:descendantFocusability="blocksDescendants">
+
+    <!-- Bell Image -->
+    <ImageButton
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/unmute"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4dp"
+        />
+
+    <TextView
+        android:id="@+id/listTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="70dp"
+        android:layout_marginLeft="8dp"
+        android:ellipsize="middle"
+        android:maxLines="1"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/list_item_title_color"
+        android:text="New meeting"
+        android:textSize="24dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1.0"
+        android:layout_below="@id/listTitle"
+        android:gravity="start">
+
+        <TextView
+            android:id="@+id/listLocation"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:minLines="1"
+            android:fontFamily="sans-serif-thin"
+            android:layout_marginLeft="8dp"
+            android:text="14:00 - 16:00"
+            android:textColor="@color/list_item_location_color"
+            android:textSize="22dp"/>
+
+        <TextView
+            android:id="@+id/listDate"
+            android:layout_width="0dp"
+            android:layout_weight="0.55"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:minLines="1"
+            android:fontFamily="sans-serif-thin"
+            android:layout_marginLeft="6dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/list_item_time_color"
+            android:textSize="22dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

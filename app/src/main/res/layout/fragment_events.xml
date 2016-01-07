@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.exchange.ross.exchangeapp.activity.Views.EventsFragment">
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="0dp"
+        android:divider="@null"
+        android:layout_marginTop="4dp"
+        android:background="@color/bg_color"/>
+    <!--         android:listSelector="@layout/list_row_selector" -->
+
+</LinearLayout>
