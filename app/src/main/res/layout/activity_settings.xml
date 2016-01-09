@@ -72,30 +72,18 @@
             android:textSize="@dimen/settings_caption"
             android:layout_marginTop="22dp"/>
 
-    <Switch
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:id="@+id/statusBusySwitch"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="2dp"
-        android:background="@drawable/setting_item_bg"
-        android:textSize="@dimen/settings_option"
-        android:text="@string/mute_on_busy_meetings"
-        android:paddingLeft="15dp"/>
-
         <Switch
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:id="@+id/ignoreAllDaySwitch"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="0dp"
-        android:background="@drawable/setting_item_bg"
-        android:textSize="@dimen/settings_option"
-        android:switchPadding="8dp"
-        android:text="@string/ignore_all_day_events"
-        android:paddingLeft="15dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:id="@+id/ignoreAllDaySwitch"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/setting_item_bg"
+            android:textSize="@dimen/settings_option"
+            android:switchPadding="8dp"
+            android:text="@string/ignore_all_day_events"
+            android:paddingLeft="15dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -107,17 +95,17 @@
 
 
         <Switch
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:id="@+id/timerSwitch"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="0dp"
-        android:textSize="@dimen/settings_option"
-        android:switchPadding="8dp"
-        android:background="@drawable/setting_item_bg"
-        android:text="@string/timer_during_meeting"
-        android:paddingLeft="15dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:id="@+id/timerSwitch"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:textSize="@dimen/settings_option"
+            android:switchPadding="8dp"
+            android:background="@drawable/setting_item_bg"
+            android:text="@string/timer_during_meeting"
+            android:paddingLeft="15dp"/>
 
         <TextView
             android:layout_width="match_parent"

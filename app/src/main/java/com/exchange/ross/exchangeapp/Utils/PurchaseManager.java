@@ -76,10 +76,15 @@ public class PurchaseManager {
                 alreadyOwned = true;
                 purchased.onPurchaseComplete(true);
             }
+            else if(purchase != null) {
+                alreadyOwned = true;
+                GATracker.tracker().setScreenName("Settings").sendEvent("Purchase", "Success", "");
+                purchased.onPurchaseComplete(true);
+            }
+            else {
+                purchased.onPurchaseComplete(false);
+            }
 
-            alreadyOwned = true;
-            GATracker.tracker().setScreenName("Settings").sendEvent("Purchase", "Success", "");
-            purchased.onPurchaseComplete(true);
         }
 
     };

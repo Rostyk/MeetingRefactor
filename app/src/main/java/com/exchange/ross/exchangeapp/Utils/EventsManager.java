@@ -26,6 +26,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import microsoft.exchange.webservices.data.ServiceObjectType;
+
 /**
  * Created by ross on 3/31/15.
  */
@@ -113,7 +115,7 @@ public class EventsManager {
                 Date endDate = event.getEndDateInDate();
                 if (isWithinRange(now, startDate, endDate)) {
                     event.checkIfAllDayEvent();
-                    if(!event.getAllDay())
+                    if(!event.getAllDay() || (event.getAllDay() && !Settings.sharedSettings().getIgnoreAllDayEvent()))
                         ongoingEvents.add(event);
                 }
             }

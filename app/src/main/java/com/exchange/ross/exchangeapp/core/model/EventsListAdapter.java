@@ -135,7 +135,7 @@ public class EventsListAdapter extends BaseAdapter{
 
         String startDate = e.getStartDate();
         String endDate = e.getEndDate();
-        if(!e.getAllDay()) {
+        if(!e.getAllDay() || (e.getAllDay() && !Settings.sharedSettings().getIgnoreAllDayEvent())) {
             if(contains) {
                 dateView.setText("In progress");
             }

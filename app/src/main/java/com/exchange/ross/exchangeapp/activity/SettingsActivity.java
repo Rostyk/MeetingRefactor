@@ -89,9 +89,6 @@ public class SettingsActivity extends ActionBarActivity {
          Switch vibrationSwitch = (Switch)findViewById(R.id.vibrationSwitch);
          vibrationSwitch.setTypeface(light);
 
-         Switch statusBusySwitch = (Switch)findViewById(R.id.statusBusySwitch);
-         statusBusySwitch.setTypeface(light);
-
          Switch ignoreAllDaySwitch = (Switch)findViewById(R.id.ignoreAllDaySwitch);
          ignoreAllDaySwitch.setTypeface(light);
 
@@ -108,16 +105,6 @@ public class SettingsActivity extends ActionBarActivity {
                 settings.setVibration(isChecked);
                 GATracker.tracker().setScreenName("Settings").sendEvent("UX", "Vibration changed " + isChecked, "");
         }
-        });
-
-        statusBusySwitch.setChecked(settings.getSilentOnStatusBusy());
-        statusBusySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                settings.setSilentOnStatusBusy(isChecked);
-                GATracker.tracker().setScreenName("Settings").sendEvent("UX", "Status busy changed " + isChecked, "");
-
-            }
         });
 
         ignoreAllDaySwitch.setChecked(settings.getIgnoreAllDayEvent());
@@ -201,7 +188,8 @@ public class SettingsActivity extends ActionBarActivity {
                     manager.buy(new OnPurchased() {
                         @Override
                         public void onPurchaseComplete(Boolean success) {
-                            addNewAccount();
+                            if(success)
+                                addNewAccount();
                         }
                     }, activity);
                 }
