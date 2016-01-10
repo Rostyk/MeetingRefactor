@@ -154,17 +154,26 @@ public class EventsFragment extends android.support.v4.app.Fragment {
     };
 
     public void updateEventsUI() {
-        ArrayList<Event>result = EventsProxy.sharedProxy().getAllEvents(position);
-                eventList = (ArrayList<Event>)result;
-                if(adapter != null) {
-                    adapter.setEventItems((ArrayList<Event>)result);
-                }
-                else {
-                    if(((ArrayList<Event>)result).size() > 0) {
-                        _setupEvents((ArrayList<Event>)result);
+        listView.post(new Runnable() {
+            @Override
+            public void run() {
+                EventsProxy.sharedProxy().getAllEventsInBackground(new OperationCompleted() {
+                    @Override
+                    public void onOperationCompleted(Object result, int id) {
+                        eventList = (ArrayList<Event>) result;
+                        if (adapter != null) {
+                            adapter.setEventItems((ArrayList<Event>) result);
+                        } else {
+                            if (((ArrayList<Event>) result).size() > 0) {
+                                _setupEvents((ArrayList<Event>) result);
+                            }
+                        }
+                        updateListView();
                     }
-                }
-                updateListView();
+                }, position);
+
+            }
+        });
     }
 
     private void setupListViewSelection() {
@@ -268,9 +277,9 @@ public class EventsFragment extends android.support.v4.app.Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        setupEvents();
+                        updateEventsUI();
                     }
-                }, 5);
+                }, 55);
             }
         }
 

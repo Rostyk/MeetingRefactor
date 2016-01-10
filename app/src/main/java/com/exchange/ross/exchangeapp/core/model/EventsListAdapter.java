@@ -73,15 +73,11 @@ public class EventsListAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.list_row, null);
-            holder = new ViewHolder();
-            holder.ib = (ImageButton) convertView.findViewById(R.id.thumbnail);
-            convertView.setTag(holder);
-        }
-        else{
-            holder = (ViewHolder)convertView.getTag();
-        }
+
+        convertView = inflater.inflate(R.layout.list_row, null);
+        holder = new ViewHolder();
+        holder.ib = (ImageButton) convertView.findViewById(R.id.thumbnail);
+
 
         EventsManager.sharedManager().countOngoingEvents(false);
         ArrayList<Event> ongoinEvents = EventsManager.sharedManager().ongoingEvents();
@@ -120,13 +116,13 @@ public class EventsListAdapter extends BaseAdapter{
                 EventsProxy.sharedProxy().updateEvent(e);
                 EventsManager.sharedManager().countOngoingEvents(true);
 
-                setButtonImage(holder.ib, e);
+                setButtonImage(holder, e);
             }
         });
 
         //ServiceType type = getServiceType(e);
 
-        setInitialButtonImage(holder.ib, e);
+        setInitialButtonImage(holder, e);
 
 
         // title
@@ -150,35 +146,35 @@ public class EventsListAdapter extends BaseAdapter{
         return convertView;
     }
 
-    private void setButtonImage(ImageButton button, Event e) {
+    private void setButtonImage(ViewHolder holder, Event e) {
         Settings.sharedSettings().setInvolvesEvensListReloadByChangingStatusBusy(false);
         Settings.sharedSettings().setInvolvesEvensListReloadByChangingIgnoreAllDayEvents(false);
         if(e.getMute()) {
-            button.setBackgroundResource(R.drawable.mute);
+            holder.ib.setImageResource(R.drawable.mute);
         }
         else {
-            button.setBackgroundResource(R.drawable.unmute);
+            holder.ib.setImageResource(R.drawable.unmute);
         }
     }
 
-    private void setInitialButtonImage(ImageButton button, Event e) {
+    private void setInitialButtonImage(ViewHolder holder, Event e) {
         e.checkIfAllDayEvent();
         if((e.getAllDay() && Settings.sharedSettings().getIgnoreAllDayEvent()) && Settings.sharedSettings().getInvolvesEvensListReloadByChangingIgnoreAllDayEvents()) {
-            button.setBackgroundResource(R.drawable.unmute);
+            holder.ib.setImageResource(R.drawable.unmute);
             e.setMute(false);
             EventsProxy.sharedProxy().updateEvent(e);
         }
         else if((e.getBusy() && Settings.sharedSettings().getSilentOnStatusBusy()) && Settings.sharedSettings().getInvolvesEvensListReloadByChangingStatusBusy()) {
-            button.setBackgroundResource(R.drawable.mute);
+            holder.ib.setImageResource(R.drawable.mute);
             e.setMute(true);
             EventsProxy.sharedProxy().updateEvent(e);
         }
         else {
             if(e.getMute()) {
-                button.setBackgroundResource(R.drawable.mute);
+                holder.ib.setImageResource(R.drawable.mute);
             }
             else {
-                button.setBackgroundResource(R.drawable.unmute);
+                holder.ib.setImageResource(R.drawable.unmute);
             }
         }
     }

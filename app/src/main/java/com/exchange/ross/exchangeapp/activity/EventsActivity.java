@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Handler;
 import android.os.IBinder;
 import com.exchange.ross.exchangeapp.IUpdateUIStart;
 import android.os.RemoteException;
@@ -22,6 +23,8 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,9 +45,12 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class EventsActivity extends ActionBarActivity implements EventsFragment.OnFragmentInteractionListener  {
 
+    Animation rotateSyncButtonAnimation;
     protected ISync syncService;
     protected ServiceConnection syncServiceConnection;
     private Activity activity;
@@ -68,7 +74,7 @@ public class EventsActivity extends ActionBarActivity implements EventsFragment.
 
         pagerAdapter.setActivity(this);
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setOffscreenPageLimit(8);
+        mViewPager.setOffscreenPageLimit(4);
 
         Typeface light = Typefaces.get(getApplicationContext(), "robotolight");
         Typeface thin =  Typefaces.get(getApplicationContext(), "robotothin");
@@ -107,11 +113,23 @@ public class EventsActivity extends ActionBarActivity implements EventsFragment.
         syncButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                syncButton.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        rotateSyncButtonAnimation = AnimationUtils.loadAnimation(activity, R.anim.rotate_around_center);
+                        syncButton.startAnimation(rotateSyncButtonAnimation);
+                    }
+                });
                 GATracker.tracker().setScreenName("Events").sendEvent("UX", "Sync button clicked.", "");
                 showToast();
                 try {
                     if(syncService != null)
                        syncService.sync(null);
+                    else {
+                        rotateSyncButtonAnimation.cancel();
+                        //rotateSyncButtonAnimation.reset();
+                        rotateSyncButtonAnimation = null;
+                    }
                 }
                 catch (RemoteException e) {
                     e.printStackTrace();
@@ -164,6 +182,17 @@ public class EventsActivity extends ActionBarActivity implements EventsFragment.
         public void updateUI() {
             Intent newEventsIntent = new Intent(TimeService.SYNC_NEW_EVENTS_BR);
             LocalBroadcastManager.getInstance(ApplicationContextProvider.getContext()).sendBroadcast(newEventsIntent);
+
+            if(rotateSyncButtonAnimation != null) {
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        rotateSyncButtonAnimation.cancel();
+                        rotateSyncButtonAnimation.reset();
+                        rotateSyncButtonAnimation = null;
+                    }
+                }, 1000);
+            }
         }
     };
 

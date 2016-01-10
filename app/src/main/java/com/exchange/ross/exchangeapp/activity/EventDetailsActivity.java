@@ -200,10 +200,10 @@ public class EventDetailsActivity extends ActionBarActivity {
 
     public void checkMuteButtonImage() {
         if(event.getMute()) {
-            muteButton.setBackgroundResource(buttonResourceIdOff);
+            muteButton.setImageResource(buttonResourceIdOff);
         }
         else {
-            muteButton.setBackgroundResource(buttonResourceIdOn);
+            muteButton.setImageResource(buttonResourceIdOn);
         }
     }
 }

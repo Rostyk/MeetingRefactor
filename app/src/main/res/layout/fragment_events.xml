@@ -9,8 +9,7 @@
         android:layout_height="wrap_content"
         android:dividerHeight="0dp"
         android:divider="@null"
-        android:layout_marginTop="4dp"
-        android:background="@color/bg_color"/>
+        android:layout_marginTop="4dp" />
     <!--         android:listSelector="@layout/list_row_selector" -->
 
 </LinearLayout>

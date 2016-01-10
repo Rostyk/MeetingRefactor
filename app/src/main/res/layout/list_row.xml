@@ -3,6 +3,7 @@
     android:id="@+id/row"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:src="@drawable/meeting1"
     android:background="@drawable/meeting1"
     android:descendantFocusability="blocksDescendants">
 
@@ -12,7 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:background="@drawable/unmute"
+        android:clickable="true"
+        android:src="@drawable/unmute"
+        android:background="?android:attr/selectableItemBackground"
         android:layout_centerVertical="true"
         android:layout_marginRight="4dp"
         />
