@@ -22,7 +22,7 @@ public class PurchaseManager {
     private static final String TAG =
             "billings";
     private SharedPreferences preferences;
-    static final String ITEM_SKU = "android.test.purchased";
+    static final String ITEM_SKU = "com.maliwan.upgratemeetings";
     public IabHelper mHelper;
 
     private static PurchaseManager instance;
